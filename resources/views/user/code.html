@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CURVLUX: THE SERIES | Netflix Class Experience</title>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            netflixRed: '#E50914',
+            netflixDark: '#141414',
+            netflixBlack: '#0B0B0B',
+            netflixCard: '#181818',
+            accentGold: '#FFD700',
+            cutePink: '#FF69B4',
+            cutePurple: '#8B5CF6'
+          },
+          fontFamily: {
+            sans: ['Bebas Neue', 'Inter', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Fonts: Bebas Neue, Montserrat, Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Montserrat:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Core Theme & Custom Styles -->
+<style data-purpose="base-styling">
+    body {
+      background-color: #0b0b0b;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    .font-brand {
+      font-family: 'Bebas Neue', cursive, sans-serif;
+      letter-spacing: 1.5px;
+    }
+    .font-title {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Hide scrollbar for clean horizontal scrolling */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .text-shadow-netflix {
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.4);
+    }
+    .card-zoom {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    }
+    .card-zoom:hover {
+      transform: scale(1.05) translateY(-6px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 10px 10px -5px rgba(229, 9, 20, 0.3);
+      z-index: 20;
+    }
+  </style>
+<!-- Animated Badge & Glow Styles -->
+<style data-purpose="badge-and-glow">
+    .glow-red {
+      box-shadow: 0 0 25px -5px rgba(229, 9, 20, 0.6);
+    }
+    .top10-badge {
+      background: linear-gradient(135deg, #e50914 0%, #b81d24 100%);
+    }
+  </style>
+</head>
+<body class="bg-netflixBlack text-gray-100 min-h-screen selection:bg-netflixRed selection:text-white">
+<!-- BEGIN: MainNavbar -->
+<!-- Header bar ala Netflix dengan sentuhan playful & modern -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gradient-to-b from-black/95 via-black/80 to-transparent backdrop-blur-md border-b border-white/5 px-4 lg:px-12 py-3">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<!-- Brand Logo & Main Nav Links -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-1.5 group" href="#hero">
+<span class="font-brand text-3xl md:text-4xl font-extrabold tracking-wider text-netflixRed transition-transform group-hover:scale-105 inline-block">
+            CURVLUX
+          </span>
+<span class="text-[10px] bg-netflixRed/20 text-netflixRed px-1.5 py-0.5 rounded uppercase font-bold tracking-widest border border-netflixRed/40">ORIGINAL</span>
+</a>
+<!-- Desktop Navigation Menu -->
+<nav class="hidden lg:flex items-center gap-6 text-xs md:text-sm font-medium tracking-wide">
+<a class="text-white hover:text-red-400 transition-colors font-semibold flex items-center gap-1" href="#hero">
+<i class="fa-solid fa-house text-xs text-netflixRed"></i> HOME
+          </a>
+<a class="text-gray-300 hover:text-white transition-colors" href="#episodes">EPISODES &amp; MOMEN</a>
+<a class="text-gray-300 hover:text-white transition-colors" href="#cast">STRUKTUR &amp; CAST</a>
+<a class="text-gray-300 hover:text-white transition-colors" href="#schedule">JADWAL TAYANG</a>
+<a class="text-gray-300 hover:text-white transition-colors" href="#community">KOMUNITAS</a>
+</nav>
+</div>
+<!-- Right Header Actions (Search Bar & Cute Profile Avatar) -->
+<div class="flex items-center gap-3 md:gap-5">
+<!-- Fun Search Box ala Netflix Search -->
+<div class="relative hidden sm:flex items-center">
+<i class="fa-solid fa-magnifying-glass absolute left-3 text-gray-400 text-xs pointer-events-none"></i>
+<input class="bg-black/60 border border-white/20 text-xs rounded-full pl-8 pr-4 py-1.5 text-white placeholder-gray-400 focus:outline-none focus:border-netflixRed focus:ring-1 focus:ring-netflixRed w-56 md:w-64 transition-all hover:border-gray-400" placeholder="Kalo cari yang rajin ya di Curvlux..." type="text"/>
+</div>
+<!-- Notification Bell with Funny Badge -->
+<div class="relative cursor-pointer p-2 rounded-full hover:bg-white/10 transition-colors">
+<i class="fa-regular fa-bell text-lg text-gray-200"></i>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-netflixRed rounded-full ring-2 ring-netflixBlack animate-pulse"></span>
+</div>
+<!-- Cute User Avatar Profile Pill -->
+<div class="flex items-center gap-2 pl-2 border-l border-white/10">
+<div class="relative">
+<img alt="Curvlux Member Avatar" class="w-8 h-8 rounded-md object-cover ring-2 ring-netflixRed/80 hover:ring-white transition-all cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPdO3be8Sa6thpic5ZkFBBCvxnyvipZ4xnfJSaqaxTk1v06ZajH0euWGmrA-J7RDzMyoUaRVzYQ1hl6MwnpyzyEnERfustnxqM7w8B3-VzRoVuhlpD31fiTkY9scMrqZJ4zy6S8Mm9KSzCfyIotjcucfddocmMiJlR119GODVQKLLRnvJHT43QFDK-7Pmc3w5nF_d-7UKnkqGn4DflD0kA9lhkisAybQY7M_9tFocV11K7Cy0xuV-j9g"/>
+<span class="absolute -bottom-1 -right-1 text-[9px] bg-accentGold text-black font-extrabold rounded-full px-1">★</span>
+</div>
+<span class="hidden md:inline-block text-xs font-semibold text-gray-300 hover:text-white cursor-pointer">
+            Mahasiswa <i class="fa-solid fa-caret-down text-[10px] ml-0.5 text-gray-400"></i>
+</span>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainNavbar -->
+<!-- BEGIN: HeroBillboard -->
+<!-- Banner Utama ala Poster Serial Curvlux Original -->
+<section class="relative pt-24 pb-20 md:pt-36 md:pb-28 px-4 lg:px-12 flex flex-col justify-end min-h-[92vh] overflow-hidden border-b border-white/5" id="hero">
+<!-- Hero Background Backdrop with Cinematic Overlays -->
+<div class="absolute inset-0 z-0">
+<!-- High School / Campus Vibe Background Backdrop -->
+<img alt="Curvlux Class Backdrop" class="w-full h-full object-cover object-center scale-105 filter brightness-50 contrast-110 blur-[1px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa50hGlvui9U5lXRNXjQiRsS1BviT0uOI0XTmsDffh9bFvW8UX4212UuRHzDngvXh1_RVd3rCdXEaTJruyQDB99TFW5Go1YzU9Jo7seTjyih-1o2NpVuqW65isZ-Gk3pXNmg7R3D7J_gZXI6EJtU6b8YeW2njApw191xh8sNjAckKfKMqGt-ak2S9Spuz6IPn4WShEIQTU_vJt5FkO_fWJAMPHuRzEoswCgDdiafWzmhBjEfdLVx-yDA"/>
+<!-- Deep Cinematic Gradients to match Reference -->
+<div class="absolute inset-0 bg-gradient-to-t from-netflixBlack via-netflixBlack/70 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-netflixBlack via-netflixBlack/60 to-transparent"></div>
+<div class="absolute inset-0 bg-radial from-transparent via-black/40 to-netflixBlack"></div>
+</div>
+<!-- Hero Content Container -->
+<div class="relative z-10 max-w-5xl mx-auto md:mx-0 w-full space-y-4 md:space-y-6">
+<!-- Mini Subheader / Series Stamp -->
+<div class="flex flex-wrap items-center gap-2 md:gap-3 animate-fade-in">
+<span class="bg-netflixRed text-white text-[11px] md:text-xs font-black tracking-widest px-2.5 py-1 rounded shadow-md uppercase">
+          CURVLUX ORIGINAL
+        </span>
+<span class="top10-badge text-white text-[11px] font-bold px-2 py-0.5 rounded-sm flex items-center gap-1 shadow">
+<i class="fa-solid fa-fire text-accentGold text-xs"></i> #1 DALAM HATI KELAS
+        </span>
+<span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">
+          99% Match
+        </span>
+</div>
+<!-- Series Big Title -->
+<div class="space-y-1">
+<h1 class="text-shadow-netflix font-title text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase leading-none">
+          CURVLUX <span class="text-netflixRed drop-shadow-lg">THE SERIES</span>
+</h1>
+<p class="font-brand text-xl sm:text-2xl tracking-widest text-gray-300">
+          XII / COHORT 2024 • THE MULTIVERSE OF CHAOS &amp; AMBISI
+        </p>
+</div>
+<!-- Rating Stars & Badges -->
+<div class="flex flex-wrap items-center gap-3 text-xs md:text-sm font-semibold">
+<div class="flex items-center text-accentGold text-sm gap-0.5">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+</div>
+<span class="text-accentGold font-bold">5.0 / 5.0</span>
+<span class="text-gray-400">•</span>
+<span class="text-white bg-white/10 px-2 py-0.5 rounded border border-white/20">2024</span>
+<span class="text-gray-400">•</span>
+<span class="text-red-400 font-bold">SEASON 1 (SEMESTER AKTIF)</span>
+<span class="text-gray-400">•</span>
+<span class="border border-gray-400/50 text-[10px] px-1.5 py-0.5 rounded font-mono">ULTRA HD 4K</span>
+<span class="text-cutePink text-xs font-bold">#SolidSelamanya ✨</span>
+</div>
+<!-- Relatable Funny Quote / Synopsis (Dari Referensi Gambar) -->
+<p class="text-sm md:text-base lg:text-lg text-gray-200 font-medium max-w-2xl leading-relaxed bg-black/40 backdrop-blur-sm p-3.5 rounded-xl border-l-4 border-netflixRed shadow-xl">
+<i class="fa-solid fa-quote-left text-netflixRed mr-2 opacity-80"></i>
+        "Kurang cerdas dapat diperbaiki dengan belajar, tetapi kurang perhatian cuma bisa diperbaiki kamu." 
+        <span class="block mt-1 text-xs text-gray-400 font-normal">
+          — Catatan rahasia ketua kelas di pojok papan tulis saat dosen terlambat 15 menit.
+        </span>
+</p>
+<!-- Action Buttons (Play, Wishlist, Share) -->
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<a class="bg-netflixRed hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2.5 transition-all transform hover:scale-105 glow-red shadow-lg text-sm md:text-base" href="#episodes">
+<i class="fa-solid fa-play text-base"></i> PUTAR PERJALANAN
+        </a>
+<a class="bg-white/20 hover:bg-white/30 text-white font-semibold px-5 py-3 rounded-lg flex items-center gap-2 backdrop-blur-md transition-all text-sm md:text-base border border-white/20 hover:border-white" href="#schedule">
+<i class="fa-solid fa-calendar-check"></i> JADWAL KULIAH
+        </a>
+<a class="bg-black/50 hover:bg-white/10 text-gray-200 hover:text-white font-medium px-4 py-3 rounded-lg flex items-center gap-2 border border-white/10 transition-all text-sm" href="#cast">
+<i class="fa-solid fa-users"></i> PEMERAN UTAMA
+        </a>
+</div>
+</div>
+<!-- Sub-Nav Tabs Strip (About Us, Episodes, Struktures, Achievements, More) Sesuai Referensi -->
+<div class="relative z-10 mt-12 pt-4 border-t border-white/10">
+<div class="flex items-center justify-start sm:justify-center gap-6 md:gap-10 overflow-x-auto no-scrollbar font-bold tracking-wider text-xs md:text-sm">
+<a class="text-gray-400 hover:text-white transition-colors pb-2 border-b-2 border-transparent uppercase whitespace-nowrap" href="#about">
+          ABOUT US
+        </a>
+<a class="text-white pb-2 border-b-2 border-netflixRed uppercase whitespace-nowrap flex items-center gap-1.5" href="#episodes">
+<span class="w-1.5 h-1.5 rounded-full bg-netflixRed animate-ping"></span> EPISODES
+        </a>
+<a class="text-gray-400 hover:text-white transition-colors pb-2 border-b-2 border-transparent uppercase whitespace-nowrap" href="#cast">
+          STRUKTUR KELAS
+        </a>
+<a class="text-gray-400 hover:text-white transition-colors pb-2 border-b-2 border-transparent uppercase whitespace-nowrap" href="#achievements">
+          ACHIEVEMENTS
+        </a>
+<a class="text-gray-400 hover:text-white transition-colors pb-2 border-b-2 border-transparent uppercase whitespace-nowrap" href="#community">
+          MORE &amp; SOCIALS
+        </a>
+</div>
+</div>
+</section>
+<!-- END: HeroBillboard -->
+<!-- BEGIN: EpisodesSection -->
+<!-- Section Episode & Momen Angkatan Ala Layout Streaming TV Show -->
+<section class="py-16 px-4 lg:px-12 max-w-7xl mx-auto" id="episodes">
+<!-- Section Title & Season Filter -->
+<div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 pb-3 border-b border-white/10 gap-4">
+<div>
+<div class="flex items-center gap-2 text-netflixRed font-bold text-xs tracking-wider uppercase mb-1">
+<i class="fa-solid fa-film"></i> Koleksi Tayangan Dokumenter
+        </div>
+<h2 class="font-title text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-white flex items-center gap-3">
+          EPISODES &amp; MOMEN ANGKATAN
+        </h2>
+</div>
+<!-- Season Selector Dropdown Pill -->
+<div class="flex items-center gap-2">
+<span class="text-xs text-gray-400 font-medium">Musim:</span>
+<div class="bg-white/10 border border-white/20 rounded-md px-3 py-1.5 text-xs font-bold text-white flex items-center gap-2 cursor-pointer hover:bg-white/20 transition-all">
+<span>SEASON 2024 (GENAP)</span>
+<i class="fa-solid fa-chevron-down text-[10px] text-gray-300"></i>
+</div>
+</div>
+</div>
+<!-- Episode Grid Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Episode 1 Card -->
+<article class="bg-netflixCard rounded-xl overflow-hidden border border-white/10 card-zoom group flex flex-col justify-between" data-purpose="episode-item">
+<div>
+<!-- Thumbnail Container -->
+<div class="relative h-44 overflow-hidden">
+<img alt="Episode 1 - Hari Pertama Kuliah" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1bLvKvZVhY8xtT51EAV9TtdwJZpqYHsGA6IhzYH94N0ud_xgLpy8KGDoyZIrPdllsHGqZlDmHuQtxsvgYWFaALHU6qBO3rn4EXg-3FWfzt4Fz9bS1tibWCABY84mBr7LSnO81uxrzE9MnC-fGqFdgylrgaz4kkuC86MRE_LJgpWFnm573dB9-2DYafgKDepfzou5kByN2T5QRoOiBT9EoOOO9a-R1-t7x3kl_K5jp2yeve6Gx9OMYnA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-netflixCard via-transparent to-black/30"></div>
+<!-- Duration & Badge -->
+<span class="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-white px-2 py-0.5 rounded border border-white/20">
+              EP 01 • 45m
+            </span>
+<span class="absolute top-3 right-3 bg-netflixRed/90 text-white text-[10px] font-extrabold px-2 py-0.5 rounded">
+              PILOT
+            </span>
+<!-- Play Overlay Button -->
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-full bg-netflixRed/90 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<i class="fa-solid fa-play ml-1"></i>
+</div>
+</div>
+</div>
+<!-- Episode Info -->
+<div class="p-4 space-y-2">
+<div class="flex items-center justify-between text-xs text-gray-400">
+<span class="text-netflixRed font-semibold">Momen Bersejarah</span>
+<span>100% Lucu</span>
+</div>
+<h3 class="font-title font-bold text-base text-white group-hover:text-netflixRed transition-colors">
+              Hari Pertama Kuliah &amp; Penentuan Komti
+            </h3>
+<p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+              Momen canggung saling tatap muka berujung voting kilat memilih ketua kelas yang berakhir pasrah tapi penuh tawa ikhlas.
+            </p>
+</div>
+</div>
+<div class="px-4 pb-4 pt-1 flex items-center justify-between border-t border-white/5 text-xs text-gray-400">
+<span><i class="fa-regular fa-calendar mr-1"></i> 02 Sep 2024</span>
+<span class="text-accentGold"><i class="fa-solid fa-star"></i> 4.9</span>
+</div>
+</article>
+<!-- Episode 2 Card (Sesuai Referensi Gambar: National Batik Day) -->
+<article class="bg-netflixCard rounded-xl overflow-hidden border border-white/10 card-zoom group flex flex-col justify-between" data-purpose="episode-item">
+<div>
+<div class="relative h-44 overflow-hidden">
+<img alt="Episode 2 - National Batik Day" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE7P5rn1UQ5c6ZYplgsvqnTIuko9DbCT43JaCAnNH3VzcDFGZaT0qPagymtFX-GJNwK7jpinGvL_eP2XdCNzsFkkJgYur82qnkCBJ9VBsB69jWpwh6GKgT5vew1r85yRVOogGXaWB8FGXsYLgkuZxuO-os7BFkjKhndu8lU4GnIb4Sajidrxu4BG53-FTOZSncWZ2_ZrsnadBfiXPzB5Ur979rvh26iJJxhJC9NSKCf-mw-339aFJ69g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-netflixCard via-transparent to-black/30"></div>
+<span class="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-white px-2 py-0.5 rounded border border-white/20">
+              EP 02 • 1h 15m
+            </span>
+<span class="absolute top-3 right-3 bg-accentGold text-black font-extrabold text-[10px] px-2 py-0.5 rounded">
+              FAVORITE
+            </span>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-full bg-netflixRed/90 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<i class="fa-solid fa-play ml-1"></i>
+</div>
+</div>
+</div>
+<div class="p-4 space-y-2">
+<div class="flex items-center justify-between text-xs text-gray-400">
+<span class="text-accentGold font-semibold">Kekompakan 100%</span>
+<span>Viral Moment</span>
+</div>
+<h3 class="font-title font-bold text-base text-white group-hover:text-netflixRed transition-colors">
+              National Batik Day: Kompak &amp; Elegan
+            </h3>
+<p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+              Melakukan foto bersama dengan dosen pembimbing dan seluruh rekan kelas sebagai momen paling bahagia nan estetik.
+            </p>
+</div>
+</div>
+<div class="px-4 pb-4 pt-1 flex items-center justify-between border-t border-white/5 text-xs text-gray-400">
+<span><i class="fa-regular fa-calendar mr-1"></i> 02 Okt 2024</span>
+<span class="text-accentGold"><i class="fa-solid fa-star"></i> 5.0</span>
+</div>
+</article>
+<!-- Episode 3 Card -->
+<article class="bg-netflixCard rounded-xl overflow-hidden border border-white/10 card-zoom group flex flex-col justify-between" data-purpose="episode-item">
+<div>
+<div class="relative h-44 overflow-hidden">
+<img alt="Episode 3 - Begadang Tugas Besar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4wVckTntx6Rgu5Gz7lLHg0A5fYJU9rCS07orI2lJWfU0cU2QRr3dGUSxeT-ubBrHBDgQu5B89H1-VtOWDQfrQnUvE6rXOWP2F2oO_g5ASVuoKgaF7wfxDaer2DI8JXedLs8mSRciRl8QsGNw_q4DhMYS6xbvJW423UtGfxJRqGUvQtNmOR2mEZZhy0IE8P2GGJk2fRarKPpLfamFP74RzOPG-_modBYhs5NRvADDzp9qRXT9hTuO8Kg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-netflixCard via-transparent to-black/30"></div>
+<span class="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-white px-2 py-0.5 rounded border border-white/20">
+              EP 03 • 3h 30m
+            </span>
+<span class="absolute top-3 right-3 bg-cutePurple text-white text-[10px] font-extrabold px-2 py-0.5 rounded">
+              DRAMA
+            </span>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-full bg-netflixRed/90 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<i class="fa-solid fa-play ml-1"></i>
+</div>
+</div>
+</div>
+<div class="p-4 space-y-2">
+<div class="flex items-center justify-between text-xs text-gray-400">
+<span class="text-cutePurple font-semibold">Tension &amp; Caffeine</span>
+<span>Curhat 3 Pagi</span>
+</div>
+<h3 class="font-title font-bold text-base text-white group-hover:text-netflixRed transition-colors">
+              Begadang Tubes &amp; Discord Chill Night
+            </h3>
+<p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+              Malam panik menuju deadline H-2 jam. Voice channel penuh desahan napas dan musik lofi sambil merapikan slide presentasi.
+            </p>
+</div>
+</div>
+<div class="px-4 pb-4 pt-1 flex items-center justify-between border-t border-white/5 text-xs text-gray-400">
+<span><i class="fa-regular fa-calendar mr-1"></i> 14 Nov 2024</span>
+<span class="text-accentGold"><i class="fa-solid fa-star"></i> 4.8</span>
+</div>
+</article>
+<!-- Episode 4 Card -->
+<article class="bg-netflixCard rounded-xl overflow-hidden border border-white/10 card-zoom group flex flex-col justify-between" data-purpose="episode-item">
+<div>
+<div class="relative h-44 overflow-hidden">
+<img alt="Episode 4 - Study Group &amp; Nongkrong Ambis" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClSTMMswMIpLGW43aYO6A-ywLkU0fjrRyd8akCgpoaV3VgSiwUv3adCqpMlOQxJ3vuzcVsKprb1iXqcXi77dmNL2PVh7bA3_v0OBjgq_cvZgwx-_nADJVHQiEKp70lPu_QYN-hYZaOIojzmxiehL6KkMIYAXFIwKEmi5qu1ZfYng7KNLcHBFcCcXk9jeKQVRd6N3YCaLcPUGwKAO7GtirWo_hmXtDztce137MMV2HmIJzJfs07CjADNg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-netflixCard via-transparent to-black/30"></div>
+<span class="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-[10px] font-bold text-white px-2 py-0.5 rounded border border-white/20">
+              EP 04 • 2h 00m
+            </span>
+<span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded">
+              HEALING
+            </span>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-full bg-netflixRed/90 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+<i class="fa-solid fa-play ml-1"></i>
+</div>
+</div>
+</div>
+<div class="p-4 space-y-2">
+<div class="flex items-center justify-between text-xs text-gray-400">
+<span class="text-emerald-400 font-semibold">Kafe Ambis</span>
+<span>Ice Americano</span>
+</div>
+<h3 class="font-title font-bold text-base text-white group-hover:text-netflixRed transition-colors">
+              Study Group Berkedok Cerita Horor
+            </h3>
+<p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+              Niat awal bedah materi ujian 30 menit, sisanya 3 jam membahas gosip perkuliahan dan konspirasi cinta lokasi sekelas.
+            </p>
+</div>
+</div>
+<div class="px-4 pb-4 pt-1 flex items-center justify-between border-t border-white/5 text-xs text-gray-400">
+<span><i class="fa-regular fa-calendar mr-1"></i> 05 Des 2024</span>
+<span class="text-accentGold"><i class="fa-solid fa-star"></i> 5.0</span>
+</div>
+</article>
+</div>
+</section>
+<!-- END: EpisodesSection -->
+<!-- BEGIN: CastAndCrewSection -->
+<!-- Section Struktur Kelas & Pemeran Utama ala Poster Seri Netflix -->
+<section class="py-16 px-4 lg:px-12 bg-gradient-to-b from-netflixBlack via-netflixCard/40 to-netflixBlack border-t border-b border-white/5" id="cast">
+<div class="max-w-7xl mx-auto space-y-12">
+<!-- Section Title Header -->
+<div class="text-center max-w-2xl mx-auto space-y-2">
+<span class="text-netflixRed text-xs font-black tracking-widest uppercase">STAR-STUDDED ENSEMBLE</span>
+<h2 class="font-title text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-white">
+          STRUKTUR KELAS &amp; PEMERAN UTAMA
+        </h2>
+<p class="text-sm text-gray-400">
+          Tokoh-tokoh kunci di balik layar jalannya drama perkuliahan, dedikasi presensi, dan kelancaran uang kas mingguan.
+        </p>
+</div>
+<!-- Top Row: Central Figure (Wali Kelas / Dosen Pembimbing) & Executive Leads -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+<!-- Ketua Kelas / Komti (Left Wing Role) -->
+<div class="bg-netflixCard p-4 rounded-xl border border-white/10 card-zoom text-center space-y-3" data-purpose="cast-card">
+<div class="relative w-44 h-56 mx-auto rounded-lg overflow-hidden shadow-2xl border-2 border-white/10">
+<img alt="Ketua Kelas - Ghifari Ghaza" class="w-full h-full object-cover object-top filter contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHPI2fEvuuCSFSR2H5gNjQC4AqPPb1K9ED56Me8eWm4kPiJfv0pPk2zrB1BakGHmWgyMNhs45RX3fo269mMNceqIydjKyNkFE4-twje83bbAzQso0IN6OGBDhzKQ0ZhOwGrNgbC08mSx_6XJrAZ9lvvGzHhCaonIgLmIbVdTS2eyFV59S5GKS2GV1SnEWc3L64m5iSay-BJ66wU7LBgaaaMOsSIuUkAWQSR0zGDSOKv8_AhI-BvN3tOw"/>
+<div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/60 to-transparent p-2">
+<span class="text-[10px] font-bold bg-netflixRed text-white px-2 py-0.5 rounded">PROTAGONIS</span>
+</div>
+</div>
+<div>
+<h3 class="font-title font-extrabold text-lg text-white uppercase tracking-wide">KETUA KELAS (KOMTI)</h3>
+<p class="text-sm font-semibold text-netflixRed">Ghifari Ghaza A.</p>
+<p class="text-xs text-gray-400 mt-1 italic">"Jubir utama negosiasi deadline tugas &amp; pembawa kabar dosen hadir/tidak."</p>
+</div>
+</div>
+<!-- Wali Kelas / Dosen Pembimbing (Prominent Central Highlight - As in Image) -->
+<div class="bg-gradient-to-b from-red-950/40 via-netflixCard to-netflixCard p-6 rounded-2xl border-2 border-netflixRed/50 card-zoom text-center space-y-4 shadow-2xl relative md:-translate-y-2" data-purpose="cast-card-lead">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-netflixRed text-white text-xs font-black tracking-wider px-3 py-0.5 rounded-full uppercase shadow-md flex items-center gap-1">
+<i class="fa-solid fa-crown text-accentGold text-[11px]"></i> EXECUTIVE PRODUCER
+          </div>
+<div class="relative w-48 h-60 mx-auto rounded-xl overflow-hidden shadow-2xl ring-4 ring-netflixRed/40 mt-2">
+<img alt="Wali Kelas - Nurizza Ifaliana" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Pi9XHUAXaDnOaJqKGNxBk7-InhvTGmIljjn3B1Nxum4hgpH5RhvIGRdjrDkBmE05QlQKOPFs_RR_Rla-I6NSvhtW824ff-upulsnZ3S1auqZCfoyK0zriDokqBg8rjRNUxWbFXHwPJImAfZ9xMO7fxau4_fMjY13FFDSNJHj12aydRKlq12uHwBUfVKEEbke46wHj2Gjywwq47htxH-ydp1oYGrUfiQUiKFmQS_iMl8cpIr4SXXO_w"/>
+<div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/70 to-transparent p-2">
+<span class="text-[11px] font-bold text-accentGold tracking-wider">GURU &amp; MENTOR TERBAIK</span>
+</div>
+</div>
+<div>
+<h3 class="font-title font-black text-xl text-white uppercase tracking-wider">WALI KELAS / DOSEN PEMBIMBING</h3>
+<p class="text-base font-bold text-accentGold">Nurizza Ifaliana, S.Pd</p>
+<p class="text-xs text-gray-300 mt-1.5 leading-relaxed">
+              Ibu panutan yang selalu sabar menghadapi dinamika absurd anak-anak kelas namun senantiasa membimbing dengan penuh kasih sayang.
+            </p>
+</div>
+</div>
+<!-- Wakil Ketua Kelas (Right Wing Role) -->
+<div class="bg-netflixCard p-4 rounded-xl border border-white/10 card-zoom text-center space-y-3" data-purpose="cast-card">
+<div class="relative w-44 h-56 mx-auto rounded-lg overflow-hidden shadow-2xl border-2 border-white/10">
+<img alt="Wakil Ketua - Anisatul M" class="w-full h-full object-cover object-top filter contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIVTNcYMdBM9AIc7e2l6DZdBrovpaiZhpLrEadgKe80oAnTWlxP8o-x6p3NfHKhdNBY-46OTgOCLh4zhY8N03pH9FTd4rVfH2ryhvwZXZ5h7XgDxtvBzKl--5p3zgLlUJ82HzE32wk-YfdyNdF8wsxVBz1V8UDzia0fT27-lPt9-EkH0v8vleGbs8WiI5-XSW5UfM9ARGUTiLkYtxmmKGP1S_Na8zacjQhKfDNIB1NjFbWYaII0oO93w"/>
+<div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/60 to-transparent p-2">
+<span class="text-[10px] font-bold bg-blue-600 text-white px-2 py-0.5 rounded">CO-LEAD</span>
+</div>
+</div>
+<div>
+<h3 class="font-title font-extrabold text-lg text-white uppercase tracking-wide">WAKIL KETUA</h3>
+<p class="text-sm font-semibold text-netflixRed">Anisatul M.</p>
+<p class="text-xs text-gray-400 mt-1 italic">"Benteng pertahanan kedua saat ketua kelas mulai lelah berdiskusi."</p>
+</div>
+</div>
+</div>
+<!-- Second Row: Sekretaris & Bendahara (As shown in Reference Screenshot) -->
+<div class="space-y-4">
+<h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest text-center">CORE MINISTRIES (ADMINISTRASI &amp; KEUANGAN)</h4>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Sekretaris 1 -->
+<div class="bg-netflixCard p-3 rounded-lg border border-white/10 card-zoom text-center space-y-2">
+<div class="relative aspect-[3/4] w-full rounded overflow-hidden">
+<img alt="Sekretaris 1 - Aluna DV" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi2uUkH4Kpmi4Fn_TrKvHmKgYdwdXV8xKTIAmB2xg-i5X3zvWlbfDRPbG9GfgREliu2Y15y3SxtoTsfaJIxx8QxUlOTufL5gUvhSHkAZYZ_oXbC60B8lOpOCjn8bIcJ5sIWOrgL5k1TBrJ05J_A_7BgWZZSbuZsQlRiC5I5pqou0iLGIkZUP6FiSoA_2XHh4yJBnx8j4phPq2KBdM0I_clnQYcasEFbdskP39q6tqo6-5RDNJFnAVkIA"/>
+</div>
+<h5 class="font-title font-bold text-xs uppercase text-white">SEKRETARIS 1</h5>
+<p class="text-xs font-semibold text-netflixRed">Aluna DV</p>
+<p class="text-[10px] text-gray-400">Master of Notulen &amp; Absensi</p>
+</div>
+<!-- Sekretaris 2 -->
+<div class="bg-netflixCard p-3 rounded-lg border border-white/10 card-zoom text-center space-y-2">
+<div class="relative aspect-[3/4] w-full rounded overflow-hidden">
+<img alt="Sekretaris 2 - Desi Okta" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjRhVrX5C019U6qTKjyPAr0Rj92B0-e-l8xiQaJ_HMiNgL-nWDOM0uPsEamEeAm9gAe54dDh1oz9X7CC2965hfiX6c9ujq-oeeG3AUNLRyhSo14xs645kGDGXsGBfNB9lzx_-0L2WgotAIacXtqqaT0BmlK1RL2CsRoG32Q-2ZxH5lq8kYQ2bUyL2demyfcHdTC7J2BKH8HUcut5wUOnFWDWm7CluLxzQK4c7RHZJ_2rVURfSuTz6PJQ"/>
+</div>
+<h5 class="font-title font-bold text-xs uppercase text-white">SEKRETARIS 2</h5>
+<p class="text-xs font-semibold text-netflixRed">Desi Okta</p>
+<p class="text-[10px] text-gray-400">Arsiparis Surat Izin Sakit</p>
+</div>
+<!-- Bendahara 1 -->
+<div class="bg-netflixCard p-3 rounded-lg border border-white/10 card-zoom text-center space-y-2">
+<div class="relative aspect-[3/4] w-full rounded overflow-hidden">
+<img alt="Bendahara 1 - Falisha" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC-_Qy8a0tIAtaDS1_6mBS_al4SFurG0S2MLlINF1eMWwL-x9IqzkkQEyRpqOBPFTBFxCNsHesT1UuUf8EkaWWpGp2asWs-9THfzwdjKTgQxaqZDkdNBwgvAE4x5y1lZ5kPOY3r3VtRFOJ8D1TKKs8qXbuCu8Nn_a7-t42FbHl8xA36s0BCqGbrNNXLDajbApWk134cxoUbq6JSsEgZEYe_m39On0fTA_cXtotO3qELuka80ob2ifWfQ"/>
+</div>
+<h5 class="font-title font-bold text-xs uppercase text-white">BENDAHARA 1</h5>
+<p class="text-xs font-semibold text-netflixRed">Falisha</p>
+<p class="text-[10px] text-gray-400">Kolektor Kas Tanpa Ampun</p>
+</div>
+<!-- Bendahara 2 -->
+<div class="bg-netflixCard p-3 rounded-lg border border-white/10 card-zoom text-center space-y-2">
+<div class="relative aspect-[3/4] w-full rounded overflow-hidden">
+<img alt="Bendahara 2 - Ismy Artika" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLV6qfePcm97PXCWHBsCrq2JE-JEVoILm_f1myqQQGfyB2UnUiFlwRWCJ6gmqS743tAikbKIGjeWN1sI87BVd324N9kb9Lyoo_JPUhvqr3QJNx2ALDjaociSqlP0YJhBxJjZ1RXRpARxNFPbJfoRhxdFtNSXNygrG1c7EYV-EQ90dr-fXPWbYryzI40Yv-ycgxFyNh7eXtKKq9xbHqMDPj0dsqsoBgPRmuGFRx_v-S5pU4ZqSrRBX5aQ"/>
+</div>
+<h5 class="font-title font-bold text-xs uppercase text-white">BENDAHARA 2</h5>
+<p class="text-xs font-semibold text-netflixRed">Ismy Artika</p>
+<p class="text-[10px] text-gray-400">Akuntan Galon &amp; Spidol</p>
+</div>
+</div>
+</div>
+<!-- Third Row: Member Roll / Supporting Cast (Daftar Mahasiswa Lainnya) -->
+<div class="pt-6 border-t border-white/5 space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="font-title text-base font-bold uppercase text-white flex items-center gap-2">
+<i class="fa-solid fa-id-badge text-netflixRed"></i> ENSEMBLE CAST (SEMUA ANGGOTA KELAS)
+          </h4>
+<span class="text-xs text-gray-400 font-mono">Total 26 Mahasiswa Terdaftar</span>
+</div>
+<!-- Horizontal Scrollable Student Badges -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-left">
+<div class="bg-black/60 p-2.5 rounded-lg border border-white/10 hover:border-netflixRed transition-colors">
+<p class="text-xs font-bold text-white truncate">Aditya Pratama</p>
+<p class="text-[10px] text-gray-400">Role: Kang Hotspot Tethering</p>
+</div>
+<div class="bg-black/60 p-2.5 rounded-lg border border-white/10 hover:border-netflixRed transition-colors">
+<p class="text-xs font-bold text-white truncate">Bagas Kurnia</p>
+<p class="text-[10px] text-gray-400">Role: Suhu Coding &amp; Bug Hunter</p>
+</div>
+<div class="bg-black/60 p-2.5 rounded-lg border border-white/10 hover:border-netflixRed transition-colors">
+<p class="text-xs font-bold text-white truncate">Citra Kirana</p>
+<p class="text-[10px] text-gray-400">Role: Desainer UI/UX Estetik</p>
+</div>
+<div class="bg-black/60 p-2.5 rounded-lg border border-white/10 hover:border-netflixRed transition-colors">
+<p class="text-xs font-bold text-white truncate">Dimas Arya</p>
+<p class="text-[10px] text-gray-400">Role: Penyelamat Kabel HDMI</p>
+</div>
+<div class="bg-black/60 p-2.5 rounded-lg border border-white/10 hover:border-netflixRed transition-colors">
+<p class="text-xs font-bold text-white truncate">Eka Ramadhan</p>
+<p class="text-[10px] text-gray-400">Role: DJ Speaker Kelas</p>
+</div>
+<div class="bg-black/60 p-2.5 rounded-lg border border-white/10 hover:border-netflixRed transition-colors">
+<p class="text-xs font-bold text-white truncate">Faris Hidayat</p>
+<p class="text-[10px] text-gray-400">Role: Master of Meme Discord</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CastAndCrewSection -->
+<!-- BEGIN: WeeklyScheduleSection -->
+<!-- Section Jadwal Tayang / Jadwal Kuliah Mingguan ala TV Streaming Grid -->
+<section class="py-16 px-4 lg:px-12 max-w-7xl mx-auto" id="schedule">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<span class="text-netflixRed text-xs font-black tracking-wider uppercase">PROGRAM SCHEDULE</span>
+<h2 class="font-title text-2xl md:text-3xl font-extrabold uppercase text-white">
+          JADWAL TAYANG / KULIAH MINGGUAN
+        </h2>
+</div>
+<p class="text-xs text-gray-400 max-w-md">
+        Jangan lupa nyalakan reminder agar tidak ketinggalan jam tayang mata kuliah penting dan presensi live streaming!
+      </p>
+</div>
+<!-- Day By Day Grid -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+<!-- SENIN -->
+<div class="bg-netflixCard border border-white/10 rounded-xl p-4 space-y-3">
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<span class="font-title font-bold text-netflixRed text-sm tracking-wide">SENIN</span>
+<span class="text-[10px] bg-white/10 text-gray-300 px-1.5 py-0.5 rounded font-mono">2 TAYANGAN</span>
+</div>
+<div class="space-y-3">
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">08:00 - 10:30 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Pemrograman Web Lanjut</p>
+<p class="text-[10px] text-gray-400">Lab Komputer 3 • Pak Rendra</p>
+</div>
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">13:00 - 15:30 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Desain Antarmuka Pengguna</p>
+<p class="text-[10px] text-gray-400">Ruang 402 • Bu Cindy</p>
+</div>
+</div>
+</div>
+<!-- SELASA -->
+<div class="bg-netflixCard border border-white/10 rounded-xl p-4 space-y-3">
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<span class="font-title font-bold text-white text-sm tracking-wide">SELASA</span>
+<span class="text-[10px] bg-white/10 text-gray-300 px-1.5 py-0.5 rounded font-mono">2 TAYANGAN</span>
+</div>
+<div class="space-y-3">
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">09:00 - 11:30 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Kecerdasan Buatan &amp; ML</p>
+<p class="text-[10px] text-gray-400">Ruang Teater A • Dr. Aris</p>
+</div>
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">13:30 - 16:00 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Animasi Digital &amp; 3D</p>
+<p class="text-[10px] text-gray-400">Studio Multimedia • Mas Gilang</p>
+</div>
+</div>
+</div>
+<!-- RABU -->
+<div class="bg-netflixCard border border-white/10 rounded-xl p-4 space-y-3">
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<span class="font-title font-bold text-white text-sm tracking-wide">RABU</span>
+<span class="text-[10px] bg-white/10 text-gray-300 px-1.5 py-0.5 rounded font-mono">1 TAYANGAN</span>
+</div>
+<div class="space-y-3">
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">10:00 - 12:30 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Kewirausahaan Kreatif</p>
+<p class="text-[10px] text-gray-400">Ruang 204 • Ibu Diana</p>
+</div>
+<div class="p-2 rounded-lg border border-dashed border-white/10 text-center py-4 text-[11px] text-gray-400">
+            Sore bebas tugas / Jam nongkrong bersama ☕
+          </div>
+</div>
+</div>
+<!-- KAMIS -->
+<div class="bg-netflixCard border border-white/10 rounded-xl p-4 space-y-3">
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<span class="font-title font-bold text-white text-sm tracking-wide">KAMIS</span>
+<span class="text-[10px] bg-white/10 text-gray-300 px-1.5 py-0.5 rounded font-mono">2 TAYANGAN</span>
+</div>
+<div class="space-y-3">
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">08:00 - 10:30 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Basis Data Terdistribusi</p>
+<p class="text-[10px] text-gray-400">Lab Komputer 1 • Pak Wahyu</p>
+</div>
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">13:00 - 14:40 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Etika Profesi &amp; Hak Cipta</p>
+<p class="text-[10px] text-gray-400">Ruang 301 • Pak Haryo</p>
+</div>
+</div>
+</div>
+<!-- JUMAT -->
+<div class="bg-netflixCard border border-white/10 rounded-xl p-4 space-y-3">
+<div class="flex items-center justify-between border-b border-white/10 pb-2">
+<span class="font-title font-bold text-emerald-400 text-sm tracking-wide">JUMAT BERKAH</span>
+<span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono">1 TAYANGAN</span>
+</div>
+<div class="space-y-3">
+<div class="p-2.5 rounded-lg bg-black/40 border border-white/5 hover:border-netflixRed/50 transition-colors">
+<span class="text-[10px] text-accentGold font-mono block">08:30 - 11:00 WIB</span>
+<p class="text-xs font-bold text-white mt-0.5">Proyek Kolaborasi Tim (Studio)</p>
+<p class="text-[10px] text-gray-400">Innovation Hub • Tim Dosen</p>
+</div>
+<div class="p-2 rounded-lg bg-emerald-950/30 border border-emerald-500/20 text-center py-4 text-[11px] text-emerald-300">
+            Jumat Siang: Evaluasi &amp; Mabar Game Santai 🎮
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: WeeklyScheduleSection -->
+<!-- BEGIN: AchievementsSection -->
+<!-- Prestasi & Hall of Fame Kelas -->
+<section class="py-16 px-4 lg:px-12 bg-netflixCard/30 border-t border-white/5" id="achievements">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<span class="text-accentGold text-xs font-black tracking-widest uppercase">HALL OF FAME</span>
+<h2 class="font-title text-2xl md:text-3xl font-extrabold uppercase text-white">
+            PENGHARGAAN &amp; PRESTASI
+          </h2>
+</div>
+<div class="flex items-center gap-2 text-xs text-gray-400">
+<span class="w-2 h-2 rounded-full bg-accentGold"></span> Berdasarkan pencapaian semester berjalan
+        </div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Trophy Card 1 -->
+<div class="bg-netflixBlack p-5 rounded-xl border border-white/10 card-zoom flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-accentGold/10 border border-accentGold/30 flex items-center justify-center text-accentGold text-2xl shrink-0">
+<i class="fa-solid fa-trophy"></i>
+</div>
+<div>
+<h3 class="font-bold text-sm text-white">Juara 1 Lomba Inovasi Web 2024</h3>
+<p class="text-xs text-netflixRed font-semibold mt-0.5">Tingkat Fakultas &amp; Universitas</p>
+<p class="text-xs text-gray-400 mt-2 leading-relaxed">
+              Dimenangkan oleh delegasi tim Curvlux lewat aplikasi manajemen tugas kelompok otomatis.
+            </p>
+</div>
+</div>
+<!-- Trophy Card 2 -->
+<div class="bg-netflixBlack p-5 rounded-xl border border-white/10 card-zoom flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-netflixRed text-2xl shrink-0">
+<i class="fa-solid fa-camera-retro"></i>
+</div>
+<div>
+<h3 class="font-bold text-sm text-white">Best Class Video Teaser</h3>
+<p class="text-xs text-netflixRed font-semibold mt-0.5">Festival Film Kampus</p>
+<p class="text-xs text-gray-400 mt-2 leading-relaxed">
+              Sinematografi ala trailer serial aksi dengan total 15.000+ views di TikTok &amp; Instagram Reels.
+            </p>
+</div>
+</div>
+<!-- Trophy Card 3 -->
+<div class="bg-netflixBlack p-5 rounded-xl border border-white/10 card-zoom flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-cutePink/10 border border-cutePink/30 flex items-center justify-center text-cutePink text-2xl shrink-0">
+<i class="fa-solid fa-heart-pulse"></i>
+</div>
+<div>
+<h3 class="font-bold text-sm text-white">Kelas Terkompak &amp; Ter-vibes</h3>
+<p class="text-xs text-cutePink font-semibold mt-0.5">Pilihan Favorit BEM</p>
+<p class="text-xs text-gray-400 mt-2 leading-relaxed">
+              Kompak mengenakan tema busana mingguan dan kehadiran presensi kuliah 98.4%.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AchievementsSection -->
+<!-- BEGIN: CommunitySocialSection -->
+<!-- Hubungi Kami & Kanal Sosial Media Komunitas -->
+<section class="py-20 px-4 lg:px-12 max-w-6xl mx-auto text-center space-y-8" id="community">
+<div class="space-y-3">
+<span class="inline-block bg-netflixRed/20 text-netflixRed text-xs font-bold px-3 py-1 rounded-full uppercase border border-netflixRed/40">
+        JOIN THE FAN CLUB &amp; COMMUNITY
+      </span>
+<h2 class="font-title text-3xl md:text-5xl font-black uppercase text-white tracking-tight">
+        IKUTI PERJALANAN KELAS KAMI
+      </h2>
+<p class="text-gray-300 max-w-xl mx-auto text-sm md:text-base">
+        Jangan cuma jadi penonton pasif! Dapatkan cerita seru di balik layar, cuplikan reel kocak, serta arsip materi belajar bersama.
+      </p>
+</div>
+<!-- Social Connect Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+<!-- Instagram Link -->
+<a class="bg-netflixCard hover:bg-gradient-to-r hover:from-pink-600 hover:to-purple-600 p-6 rounded-2xl border border-white/10 flex items-center gap-4 transition-all duration-300 transform hover:-translate-y-1 shadow-xl text-left group" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
+<div class="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center text-2xl text-white group-hover:scale-110 transition-transform">
+<i class="fa-brands fa-instagram"></i>
+</div>
+<div>
+<span class="text-[10px] text-gray-400 uppercase tracking-widest block">INSTAGRAM STORIES &amp; FEED</span>
+<h3 class="font-title font-bold text-lg text-white">@curvluxs</h3>
+<p class="text-xs text-gray-300">Sorotan momen, foto batik, dan recap event mingguan</p>
+</div>
+</a>
+<!-- Discord Community -->
+<a class="bg-netflixCard hover:bg-indigo-600 p-6 rounded-2xl border border-white/10 flex items-center gap-4 transition-all duration-300 transform hover:-translate-y-1 shadow-xl text-left group" href="https://discord.com" rel="noopener noreferrer" target="_blank">
+<div class="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center text-2xl text-white group-hover:scale-110 transition-transform">
+<i class="fa-brands fa-discord"></i>
+</div>
+<div>
+<span class="text-[10px] text-gray-400 uppercase tracking-widest block">DISCORD COMMUNITY</span>
+<h3 class="font-title font-bold text-lg text-white">CURVLUX HQ</h3>
+<p class="text-xs text-gray-300">Voice channel begadang tugas, mabar game, &amp; sharing materi</p>
+</div>
+</a>
+</div>
+<div class="pt-4">
+<p class="text-xs text-gray-500 italic">
+        "Website ini dibuat dengan cinta, kopi sachet, dan tawa canda anggota kelas Curvlux."
+      </p>
+</div>
+</section>
+<!-- END: CommunitySocialSection -->
+<!-- BEGIN: MainFooter -->
+<!-- Footer ala Streaming Portal -->
+<footer class="border-t border-white/10 bg-netflixBlack py-12 px-4 lg:px-12 text-gray-400 text-xs">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="font-brand text-2xl text-netflixRed font-extrabold tracking-wider">CURVLUX</span>
+<span class="text-[10px] border border-white/20 px-1.5 py-0.5 rounded text-gray-400">SERIES PLATFORM</span>
+</div>
+<p class="text-center sm:text-right text-gray-400">
+          Pertanyaan mengenai siaran kuliah? Hubungi Komti Ghifari &amp; Tim Sekretaris.
+        </p>
+</div>
+<!-- Footer Nav Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-gray-400 text-[11px]">
+<ul class="space-y-2">
+<li><a class="hover:underline hover:text-white" href="#hero">Beranda Serial</a></li>
+<li><a class="hover:underline hover:text-white" href="#episodes">Koleksi Momen (Season 2024)</a></li>
+<li><a class="hover:underline hover:text-white" href="#schedule">Jadwal Tayang Kelas</a></li>
+</ul>
+<ul class="space-y-2">
+<li><a class="hover:underline hover:text-white" href="#cast">Profil Dosen &amp; Wali Kelas</a></li>
+<li><a class="hover:underline hover:text-white" href="#cast">Daftar Aktor &amp; Komti</a></li>
+<li><a class="hover:underline hover:text-white" href="#achievements">Piala &amp; Prestasi</a></li>
+</ul>
+<ul class="space-y-2">
+<li><a class="hover:underline hover:text-white" href="#community">Discord Voice Lounge</a></li>
+<li><a class="hover:underline hover:text-white" href="#community">Instagram Story Archive</a></li>
+<li><a class="hover:underline hover:text-white" href="#">Link Google Drive Materi</a></li>
+</ul>
+<ul class="space-y-2">
+<li><span class="text-white font-semibold block mb-1">Service Code: CURV-2024-DKV</span></li>
+<li class="text-gray-400">Didesain dengan inspirasi antarmuka streaming pop-culture.</li>
+</ul>
+</div>
+<div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between text-gray-400 text-[11px] gap-2">
+<p>© 2024 CURVLUX THE SERIES. All Rights Reserved. Hak cipta persahabatan seumur hidup.</p>
+<p class="text-netflixRed font-mono font-bold">XII / COHORT 2024 • THE BEST CLASS EVER</p>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+</body></html>

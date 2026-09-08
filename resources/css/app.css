@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+  --color-netflixRed: #E50914;
+  --color-netflixDark: #141414;
+  --color-netflixBlack: #0B0B0B;
+  --color-netflixCard: #181818;
+  --color-accentGold: #FFD700;
+  --color-cutePink: #FF69B4;
+  --color-cutePurple: #8B5CF6;
+  --font-sans: "Bebas Neue", "Inter",
+    Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Montserrat", sans-serif;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
