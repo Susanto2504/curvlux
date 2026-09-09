@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -8,7 +9,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function(){
-    return view('user.beranda');
+    $users = User::all();
+    return view('user.beranda', ['users' => $users]);
 });
 
 Route::get('/dashboard', function () {

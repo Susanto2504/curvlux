@@ -1,4 +1,4 @@
-<x-user.layout>
+<x-user.layout :users="$users">
         <!-- BEGIN: MainNavbar -->
         <!-- Header bar ala Netflix dengan sentuhan playful & modern -->
         <<x-user.header />
@@ -16,7 +16,7 @@
 
         <!-- BEGIN: Struktur Kelas -->
         <!-- Section Struktur Kelas & Pemeran Utama ala Poster Seri Netflix -->
-        <x-user.section.struktur/>
+        <x-user.section.struktur :users="$users"/>
         <!-- END: CastAndCrewSection -->
 
         <!-- BEGIN: Jadwal Kuliah -->
